@@ -13,3 +13,9 @@ end
 class Tweet
   belongs_to :user
 end
+
+u = User.create!(user_name: 'Faker', password_hash: '1234')
+t = Tweet.create!(content: 'heyyyy', user_id: 1)
+u2 = User.create!(user_name: 'Other Guy', password_hash: '1234')
+f = Following.create!(follower_id: 1, followee_id: 2)
+u3 = User.create!(user_name: 'Mr. 3', password_hash: '1234')
