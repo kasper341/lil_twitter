@@ -15,10 +15,11 @@
   </div>
 
   <div>
-
+  <% if session[:errors] %>
     <% if session[:error_view_count] > 0 %>
     <%= session[:errors] %>
     <% session[:error_view_count] = 0 %>
+    <% end %>
     <% end %>
   </div>
 
@@ -53,7 +54,7 @@
 
   <div>
     <form action='/follow' method='post' name='follow_user'>
-    <input type='hidden' name='user_to_follow_id' value="<%= @user.id %>">
+      <input type='hidden' name='user_to_follow_id' value="<%= @user.id %>">
       <input type='submit' value='Follow!'>
 
     </form>

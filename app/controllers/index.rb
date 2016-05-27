@@ -13,7 +13,7 @@ post '/tweet' do
   @user_id = session[:user_id]
   @tweet = Tweet.new(content: params[:submit_tweet], user_id: @user_id)
   unless @tweet.save
-  @errors = @tweet.errors.messages[:content].first
+    @errors = @tweet.errors.messages[:content].first
     session[:errors] =  @errors
     session[:error_view_count] = 1
   end
@@ -35,12 +35,14 @@ get '/logout' do
 end
 
 post '/follow' do
- Following.create(follower_id: session[:user_id], followee_id: params[:user_to_follow_id])
-  @user_id = session[:user_id]
-  redirect "/users/#{@user_id}"
-end
+  unless session[:user_id] == params[:user_to_follow_id].to_i
+   Following.create(follower_id: session[:user_id], followee_id: params[:user_to_follow_id])
+ end
+   @user_id = session[:user_id]
+   redirect "/users/#{@user_id}"
+ end
 
-post '/users/new' do
+ post '/users/new' do
   @new_user = User.new(params[:user])
   if @new_user.save
     redirect "users/#{@new_user.id}"
