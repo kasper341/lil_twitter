@@ -38,16 +38,18 @@ post '/follow' do
   unless session[:user_id] == params[:user_to_follow_id].to_i
    Following.create(follower_id: session[:user_id], followee_id: params[:user_to_follow_id])
  end
-   @user_id = session[:user_id]
-   redirect "/users/#{@user_id}"
- end
+ @user_id = session[:user_id]
+ redirect "/users/#{@user_id}"
+end
 
- post '/users/new' do
-  @new_user = User.new(params[:user])
-  if @new_user.save
-    redirect "users/#{@new_user.id}"
+post '/users/new' do
+  @user = User.new(params[:user])
+  if @user.save
+    session[:user_id] = @user.id
+    session[:user_name] = @user.user_name
+    redirect "users/#{@user.id}"
   else
-    @error_message = @new_user.errors.messages
+    @error_message = @user.errors.messages
     erb :error
   end
 end
@@ -57,8 +59,7 @@ post '/users/new/redirect' do
   @user = User.where(user_name: params[:user_name]).first
 
   if @user
-  # binding.pry
-  if @user.password == params[:password]
+    if @user.password == params[:password]
       # session[:visit] = 0
       session[:user_id] = @user.id
       session[:user_name] = @user.user_name
