@@ -4,27 +4,27 @@
   </h3>
   <%= @user.user_name %>
 
-<h4>Post a Tweet: </h4>
-<div>
+  <h4>Post a Tweet: </h4>
+  <div>
     <form id='tweet_submit' action='/tweet' name='tweet_submission' method = 'post'>
-    <label for='tweet'> Tweet: </label>
-    <textarea name='submit_tweet' placeholder='Tweet goes here!'></textarea>
-    <input type='submit' value='Tweet!'>
+      <label for='tweet'> Tweet: </label>
+      <textarea name='submit_tweet' placeholder='Tweet goes here!'></textarea>
+      <input type='submit' value='Tweet!'>
     </form>
 
-</div>
+  </div>
 
-<div>
+  <div>
 
-<% if session[:error_view_count] > 0 %>
-  <%= session[:errors] %>
-  <% session[:error_view_count] = 0 %>
-<% end %>
-</div>
+    <% if session[:error_view_count] > 0 %>
+    <%= session[:errors] %>
+    <% session[:error_view_count] = 0 %>
+    <% end %>
+  </div>
 
 
   <div class='user_tweets'>
-  <% sorted_tweets = @user.tweets.sort_by{|tweet| tweet.created_at}.reverse %>
+    <% sorted_tweets = @user.tweets.sort_by{|tweet| tweet.created_at}.reverse %>
     <h4>Tweets</h4>
     <ul>
       <% sorted_tweets.each do |tweet| %>
@@ -51,6 +51,13 @@
     </ul>
   </div>
 
+  <div>
+    <form action='/follow' method='post' name='follow_user'>
+    <input type='hidden' name='user_to_follow_id' value="<%= @user.id %>">
+      <input type='submit' value='Follow!'>
 
+    </form>
+
+  </div>
 
 </div>
