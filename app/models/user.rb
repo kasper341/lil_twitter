@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   has_many :followers, through: :followings_as_followee
   has_many :followees, through: :followings_as_follower
   has_many :tweets
+
+  validates :user_name, :password_hash, presence: true
+  validates :user_name, uniqueness: true
+
   def password
     @password ||= Password.new(password_hash)
   end

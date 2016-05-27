@@ -1,13 +1,63 @@
 <div class='user_page'>
-<h3>
-  Lil Twitter
-</h3>
-  <%= @user.user_name %>
-  <ul>
-    <% @user.tweets.each do |tweet| %>
-      <li>
-        <%= tweet.content %>
-      </li>
+
+  <div id='user_name_display'>
+    <h3><%= @user.user_name %></h3>
+  </div>
+
+  <div id='follow_display'>
+    <form action='/follow' method='post' name='follow_user'>
+      <input type='hidden' name='user_to_follow_id' value="<%= @user.id %>">
+      <input type='submit' value='Follow!'>
+    </form>
+  </div>
+  <br>
+  <br>
+
+<div id='user_tweet_display'>
+    <form id='tweet_submit' action='/tweet' name='tweet_submission' method = 'post'>
+      <label for='tweet'> Tweet: </label>
+      <textarea name='submit_tweet' placeholder='Tweet goes here!'></textarea>
+      <input type='submit' value='Tweet!'>
+    </form>
+  </div>
+
+  <div>
+    <% if session[:errors] %>
+    <% if session[:error_view_count] > 0 %>
+    <%= session[:errors] %>
+    <% session[:error_view_count] = 0 %>
     <% end %>
-  </ul>
+    <% end %>
+  </div>
+
+
+  <div class='user_tweets'>
+    <% sorted_tweets = @user.tweets.sort_by{|tweet| tweet.created_at}.reverse %>
+    <h4>Tweets</h4>
+    <ul>
+      <% sorted_tweets.each do |tweet| %>
+      <li><%= tweet.content %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class='followers'>
+    <h4>Followers</h4>
+    <ul>
+      <% @user.followers.each do |follower| %>
+      <li> <a href="<%= "/users/#{follower.id}" %>"><%= follower.user_name %></a> </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class='followees'>
+    <h4>Following</h4>
+    <ul>
+      <% @user.followees.each do |followee| %>
+      <li> <a href="<%= "/users/#{followee.id}" %>"><%= followee.user_name %></a> </li>
+      <% end %>
+    </ul>
+  </div>
+
+
 </div>
