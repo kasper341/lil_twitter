@@ -9,6 +9,15 @@ get '/users/new' do
   erb :registration
 end
 
+post '/tweet' do
+  @user_id = session[:user_id]
+  @tweet = Tweet.create(content: params[:submit_tweet], user_id: @user_id)
+  @user = User.find(@user_id)
+  p session[:user_id]
+  p '***************************************'
+  redirect "/users/#{@user_id}"
+end
+
 get '/users/:id' do
   @user = User.find(params[:id])
   erb :user_page
@@ -16,6 +25,11 @@ end
 
 get '/login' do
   erb :login
+end
+
+get '/logout' do
+  session.clear
+  redirect '/'
 end
 
 post '/users/new' do
@@ -29,15 +43,16 @@ post '/users/new' do
 end
 
 post '/users/new/redirect' do
-  p params[:user_name]
   # @user = User.find_by(user_name: params[:user_name]) # why broken?
   @user = User.where(user_name: params[:user_name]).first
-  p @user
+
   if @user
   # binding.pry
-    if @user.password == params[:password]
+  if @user.password == params[:password]
       # session[:visit] = 0
       session[:user_id] = @user.id
+      session[:user_name] = @user.user_name
+
       # p session
       # p session[:session_id]
       erb :user_page

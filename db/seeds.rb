@@ -1,3 +1,7 @@
+Following.delete_all
+Tweet.delete_all
+User.delete_all
+
 100.times do |n|
 
   u = User.new(user_name: Faker::Name.name)
@@ -15,5 +19,9 @@
 
 
 end
+
+20.times do |n|
+  f = Following.create(follower_id: 1, followee_id: rand(1..100))
+  end
 
 

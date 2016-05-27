@@ -1,14 +1,25 @@
 <div class='user_page'>
   <h3>
-  <%= session.inspect %>
     Lil Twitter
   </h3>
   <%= @user.user_name %>
 
+<h4>Post a Tweet: </h4>
+<div>
+    <form id='tweet_submit' action='/tweet' name='tweet_submission' method = 'post'>
+    <label for='tweet'> Tweet: </label>
+    <textarea name='submit_tweet' placeholder='Tweet goes here!'></textarea>
+    <input type='submit' value='Tweet!'>
+    </form>
+
+</div>
+
+
   <div class='user_tweets'>
+  <% sorted_tweets = @user.tweets.sort_by{|tweet| tweet.created_at}.reverse %>
     <h4>Tweets</h4>
     <ul>
-      <% @user.tweets.each do |tweet| %>
+      <% sorted_tweets.each do |tweet| %>
       <li><%= tweet.content %></li>
       <% end %>
     </ul>

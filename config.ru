@@ -6,9 +6,10 @@ set :app_file, __FILE__
 configure do
   # See: http://www.sinatrarb.com/faq.html#sessions
   enable :sessions
+  set :protection, :except => [:path_traversal, :session_hijacking]
   set :session_secret, ENV['SESSION_SECRET'] || 'this is a secret shhhhh'
 
-  # Set the views to 
+  # Set the views to
   set :views, File.join(Sinatra::Application.root, "app", "views")
 end
 
