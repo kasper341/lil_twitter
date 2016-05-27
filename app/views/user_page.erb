@@ -1,13 +1,36 @@
 <div class='user_page'>
-<h3>
-  Lil Twitter
-</h3>
+  <h3>
+    Lil Twitter
+  </h3>
   <%= @user.user_name %>
 
-  <ul>
-    <% @user.tweets.each do |tweet| %>
+  <div class='user_tweets'>
+    <h4>Tweets</h4>
+    <ul>
+      <% @user.tweets.each do |tweet| %>
       <li><%= tweet.content %></li>
-    <% end %>
-  </ul>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class='followers'>
+    <h4>Followers</h4>
+    <ul>
+      <% @user.followers.each do |follower| %>
+      <li> <a href="<%= "/users/#{follower.id}" %>"><%= follower.user_name %></a> </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class='followees'>
+    <h4>People Followed</h4>
+    <ul>
+      <% @user.followees.each do |followee| %>
+      <li> <a href="<%= "/users/#{followee.id}" %>"><%= followee.user_name %></a> </li>
+      <% end %>
+    </ul>
+  </div>
+
+
 
 </div>
