@@ -11,10 +11,12 @@ end
 
 post '/tweet' do
   @user_id = session[:user_id]
-  @tweet = Tweet.create(content: params[:submit_tweet], user_id: @user_id)
-  @user = User.find(@user_id)
-  p session[:user_id]
-  p '***************************************'
+  @tweet = Tweet.new(content: params[:submit_tweet], user_id: @user_id)
+  unless @tweet.save
+    @errors = @tweet.errors.messages[:content].first
+    session[:errors] =  @errors
+    session[:error_view_count] = 1
+  end
   redirect "/users/#{@user_id}"
 end
 

@@ -5,12 +5,14 @@ A user has a profile page
 A user can see a list of their followers
 A user can see others' profile pages
 A user can see others' profile pages with all their updates
-
 A user has followers
+A user can post status updates
+
+A user can only post status updates of 140 characters or less
+
 A user can follow other users
 
-A user can post status updates
-A user can only post status updates of 140 characters or less
+
 A user can have a solid experience because the site is fully tested
 
 ------ defer these

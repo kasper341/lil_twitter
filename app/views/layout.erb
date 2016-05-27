@@ -23,12 +23,9 @@
     <a href="/">Home</a>
     <a href="/login">Login</a>
 
-    <% if session[:user_id] == nil %>
-
-    <% else %>
+    <% unless session[:user_id] == nil %>
     <%= "Currently logged in as #{session[:user_name]}" %>
     <a href="/logout">Logout</a>
-
     <% end %>
   </div>
 
