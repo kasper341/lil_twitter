@@ -20,8 +20,7 @@ end
 
 post '/users/new' do
   @new_user = User.new(params[:user])
-  @new_user.password = params[:password]
-  if @new_user.save
+  if @new_user.save!
     redirect "users/#{@new_user.id}"
   else
     @error_message = @new_user.errors.messages
