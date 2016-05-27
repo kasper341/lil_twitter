@@ -3,11 +3,11 @@
   Lil Twitter
 </h3>
   <%= @user.user_name %>
+
   <ul>
     <% @user.tweets.each do |tweet| %>
-      <li>
-        <%= tweet.content %>
-      </li>
+      <li><%= tweet.content %></li>
     <% end %>
   </ul>
+
 </div>
