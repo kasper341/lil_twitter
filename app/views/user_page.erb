@@ -1,1 +1,13 @@
-<%= @user.user_name %>
+<div class='user_page'>
+<h3>
+  Lil Twitter
+</h3>
+  <%= @user.user_name %>
+  <ul>
+    <% @user.tweets.each do |tweet| %>
+      <li>
+        <%= tweet.content %>
+      </li>
+    <% end %>
+  </ul>
+</div>
