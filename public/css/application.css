@@ -4,6 +4,30 @@
   padding: 0px 20px 20px 20px;
   border: 1px dotted black;
 }
+
 th {
   text-align: left;
+}
+
+#navbar {
+  margin: 20px;
+  width: 600px;
+  padding: 10px 10px 10px 10px;
+  background-color: #dddddd
+}
+
+.user_page {
+  margin: 5%;
+  width: 100%;
+  padding: 0px 20px 20px 20px;
+}
+
+#user_name_display {
+  display: inline-block;
+  width: 30%
+}
+
+#user_name_display {
+  display: inline-block;
+  width: 30%
 }

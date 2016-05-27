@@ -1,8 +1,10 @@
-<p>
-  SOMETHING WENT WRONG:<br>
-  <% @error_message.each do |error_type, error_message| %>
+<div class='container'>
+  <p>
+    SOMETHING WENT WRONG:<br>
+    <% @error_message.each do |error_type, error_message| %>
     Error type: <%= error_type %><br>
     Error message: <%= error_message.first %><br>
     <br>
-  <% end %>
-</p>
+    <% end %>
+  </p>
+</div>

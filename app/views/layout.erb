@@ -20,11 +20,12 @@
 <body>
 
   <div id='navbar'>
+    <strong>Lil' Twitter</strong>
     <a href="/">Home</a>
     <a href="/login">Login</a>
 
     <% unless session[:user_id] == nil %>
-    <%= "Currently logged in as #{session[:user_name]}" %>
+    <%= "Currently logged in as <strong><a href=""/users/#{session[:user_id]}"">#{session[:user_name]}</a></strong>" %>
     <a href="/logout">Logout</a>
     <% end %>
   </div>
