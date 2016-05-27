@@ -2,7 +2,6 @@ Spec:
 
 A user can log in
 A user has a profile page
-
 A user can see a list of their followers
 A user can see others' profile pages
 A user can see others' profile pages with all their updates

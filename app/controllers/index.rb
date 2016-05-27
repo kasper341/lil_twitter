@@ -1,3 +1,5 @@
+
+
 get '/' do
   # Look in app/views/index.erb
   erb :index
@@ -9,12 +11,10 @@ end
 
 get '/users/:id' do
   @user = User.find(params[:id])
-
   erb :user_page
 end
 
 get '/login' do
-
   erb :login
 end
 
@@ -30,18 +30,23 @@ end
 
 post '/users/new/redirect' do
   p params[:user_name]
-  # @user = User.find_by(user_name: params[:user_name])
+  # @user = User.find_by(user_name: params[:user_name]) # why broken?
   @user = User.where(user_name: params[:user_name]).first
   p @user
   if @user
+  # binding.pry
     if @user.password == params[:password]
-      redirect "/users/#{@user.id}"
+      # session[:visit] = 0
+      session[:user_id] = @user.id
+      # p session
+      # p session[:session_id]
+      erb :user_page
+      # redirect "/users/#{@user.id}"
     else
       redirect '/'
     end
   else
     redirect '/'
   end
-
 
 end

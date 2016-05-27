@@ -18,6 +18,7 @@ gem 'rake'
 
 gem 'shotgun'
 gem 'faker'
+gem 'pry-byebug'
 
 group :test do
   gem 'faker'

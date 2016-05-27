@@ -1,5 +1,6 @@
 <div class='user_page'>
   <h3>
+  <%= session.inspect %>
     Lil Twitter
   </h3>
   <%= @user.user_name %>
@@ -23,7 +24,7 @@
   </div>
 
   <div class='followees'>
-    <h4>People Followed</h4>
+    <h4>Following</h4>
     <ul>
       <% @user.followees.each do |followee| %>
       <li> <a href="<%= "/users/#{followee.id}" %>"><%= followee.user_name %></a> </li>
